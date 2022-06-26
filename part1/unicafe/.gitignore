@@ -2,12 +2,8 @@
 
 # dependencies
 /node_modules
-node_modules
-node_modules/
-coursematerial
 /.pnp
 .pnp.js
-**node_modules**
 
 # testing
 /coverage
