@@ -19,9 +19,12 @@ The task for this part required me to make 3 different React Apps, one course li
 - Object and Array mutations need extra care under state events.
 
 ## Part 2 Communicating with server
-
+The task for this part required me to polish the courseinfo app from earlier. Furthermore, I also made a phonebook with data save and a search field.
 - [Course](https://fullstackopen.com/en/part2)
 - [My solutions](https://github.com/emrergin/fullstackopen/tree/main/part2)
 
 ### What I learned in Part 2
 - I had used `reduce` before, but this is the first time I fully understood its versatility.
+- I finally grasped the use of using functions as paramters or props, which is really helpful when working with components that includes event handlers.
+- When rendering a list, `map` needs a wrapping `div` or a `Fragment`.
+- Never call a component from itself, recursive components are never a good idea.
