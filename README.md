@@ -17,3 +17,11 @@ The task for this part required me to make 3 different React Apps, one course li
 ### What I learned in Part 1
 - Anecdotes is the first project in which I used `Uint8Array`.
 - Object and Array mutations need extra care under state events.
+
+## Part 2 Communicating with server
+
+- [Course](https://fullstackopen.com/en/part2)
+- [My solutions](https://github.com/emrergin/fullstackopen/tree/main/part2)
+
+### What I learned in Part 2
+- I had used `reduce` before, but this is the first time I fully understood its versatility.
