@@ -2,12 +2,8 @@
 
 # dependencies
 /node_modules
-node_modules
-node_modules/
-coursematerial
 /.pnp
 .pnp.js
-**node_modules**
 
 # testing
 /coverage
@@ -21,7 +17,6 @@ coursematerial
 .env.development.local
 .env.test.local
 .env.production.local
-.env
 
 npm-debug.log*
 yarn-debug.log*
