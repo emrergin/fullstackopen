@@ -1,21 +1,24 @@
 import { useState,useEffect } from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 import PersonForm from './components/PersonForm.js'
 import Filter from './components/Filter.js'
 import Persons from './components/Persons.js'
+import Notification from './components/Notification.js'
+import personService from './services/persons.js'
 
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState('');
   const [newNumber, setNewNumber] = useState('');
   const [searchTerm, setSearch] = useState('');
+  const [message, setMessage] = useState(null);
+  const [messageType, setMessageType] = useState(null);
 
   useEffect(() => {
-    console.log('effect')
-    axios
-      .get('http://localhost:3001/persons')
-      .then(response => {
-        setPersons(response.data)
+    personService
+      .getAll()
+      .then(initialPersons => {
+        setPersons(initialPersons)
       })
   }, [])
 
@@ -32,20 +35,56 @@ const App = () => {
     setSearch(event.target.value);
   }
 
+  const deleteName= (id,name) =>{
+    if (window.confirm(`Do you really want to delete ${name}?`)) {
+        personService.deletePerson(id);
+        setPersons(persons.filter(a=>a.id!==id))
+    }
+}
+
   const addName = (event)=>{
     event.preventDefault();
-    if (persons.filter(a=> a.name === newName).length)
-    {
-      alert(`${newName} already exists in the phonebook`);
-      return false;
-    }
     const newPerson = {
       name: newName,
       number: newNumber
     }
-    setPersons(persons.concat(newPerson));
-    setNewName(``);
-    setNewNumber(``);
+    let existingPerson = persons.find(a=> a.name === newName);
+    if (existingPerson)
+    {
+      console.log(existingPerson);
+      if (window.confirm(`${newName} is already added to phonebook, replace the old number with the new one?`)) {        
+        let updatedPerson = {...existingPerson, number:newNumber};
+        personService.update(existingPerson.id,updatedPerson).then(response =>{
+          setPersons(persons.map(person => person.id !== existingPerson.id ? person : response));
+          // console.log(response);
+          setMessage(`${response.name} is updated successfully.`);
+          setMessageType(`success`);
+          setTimeout(() => {
+            setMessage(null)
+          }, 5000)
+        })
+        .catch(error => {
+          setMessage(`${existingPerson.name} was already removed from the server.`);
+          setMessageType(`error`);
+          setTimeout(() => {
+            setMessage(null)
+          }, 5000)
+        })        
+      }
+      return false;
+    }
+    personService
+    .create(newPerson)
+    .then(returnedPerson  => {
+      setNewName(``);
+      setNewNumber(``);
+      setPersons(persons.concat(returnedPerson))
+      setMessage(`${returnedPerson.name} is saved.`);
+      setMessageType(`success`);
+      setTimeout(() => {
+        setMessage(null)
+      }, 5000)
+    })
   }
 
   const filteredPersons =
@@ -55,6 +94,7 @@ const App = () => {
 
   return (
     <div>
+      <Notification message={message} messageType={messageType}/>
       <h2>Phonebook</h2>
       <Filter value={searchTerm} changeHandler={handleSearchChange}/>
       <h2>add new person</h2>
@@ -66,7 +106,7 @@ const App = () => {
         number={newNumber}
       />
       <h2>Numbers</h2>
-      <Persons persons={filteredPersons} />      
+      <Persons persons={filteredPersons} deleteHandler={deleteName}/>      
     </div>
   )
 }

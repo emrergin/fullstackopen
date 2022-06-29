@@ -27,4 +27,6 @@ The task for this part required me to polish the courseinfo app from earlier. Fu
 - I had used `reduce` before, but this is the first time I fully understood its versatility.
 - I finally grasped the use of using functions as paramters or props, which is really helpful when working with components that includes event handlers.
 - When rendering a list, `map` needs a wrapping `div` or a `Fragment`.
-- Never call a component from itself, recursive components are never a good idea.
+- Never call a component from itself, recursive components are never a good idea :)
+- I learned that childs deleting themselves is an anti-pattern in react. Changing the state via the parent is the way to go.
+- I learned more about REST principles which will probably be introduced more deeply in the next sessions.
