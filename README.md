@@ -20,6 +20,7 @@ The task for this part required me to make 3 different React Apps, one course li
 
 ## Part 2 Communicating with server
 The task for this part required me to polish the courseinfo app from earlier. Furthermore, I also made a phonebook with data save and a search field.
+
 - [Course](https://fullstackopen.com/en/part2)
 - [My solutions](https://github.com/emrergin/fullstackopen/tree/main/part2)
 
@@ -30,3 +31,16 @@ The task for this part required me to polish the courseinfo app from earlier. Fu
 - Never call a component from itself, recursive components are never a good idea :)
 - I learned that childs deleting themselves is an anti-pattern in react. Changing the state via the parent is the way to go.
 - I learned more about REST principles which will probably be introduced more deeply in the next sessions.
+
+## Part 3 Programming a server with NodeJS and Express
+The task for this part expects to build a fullstack webpage, connected to the frontend built in the previous parts. Since it is deployed to the heroku at the end, it needed a separate repo, given below:
+
+- [Course](https://fullstackopen.com/en/part3)
+- [My solutions](https://github.com/emrergin/fullstackopen_phonebook)
+- [Live](https://obscure-oasis-12065.herokuapp.com/)
+
+### What I learned in Part 3
+- To be honest, not much, since I already have some experience with Express, which can be seen [here](https://github.com/emrergin/atolye).
+- I learned how to use the Visual Studio [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) extension, which for some reason, I liked more than the [Postman](https://www.postman.com/).
+- I knew that express files can serve premade html files, but I did not consider to use this opportunity with frameworks before this.
+
