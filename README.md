@@ -40,7 +40,8 @@ The task for this part expects to build a fullstack webpage, connected to the fr
 - [Live](https://obscure-oasis-12065.herokuapp.com/)
 
 ### What I learned in Part 3
-- To be honest, not much, since I already have some experience with Express, which can be seen [here](https://github.com/emrergin/atolye).
+- Note that I already have some experience with Express, which can be seen [here](https://github.com/emrergin/atolye).
 - I learned how to use the Visual Studio [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) extension, which for some reason, I liked more than the [Postman](https://www.postman.com/).
 - I knew that express files can serve premade html files, but I did not consider to use this opportunity with frameworks before this.
+- I knew about middleware, but did not know the routes can also be used as such given, `next` parameters for error handling.
 

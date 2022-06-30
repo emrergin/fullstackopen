@@ -51,20 +51,28 @@ const App = () => {
     let existingPerson = persons.find(a=> a.name === newName);
     if (existingPerson)
     {
-      console.log(existingPerson);
       if (window.confirm(`${newName} is already added to phonebook, replace the old number with the new one?`)) {        
         let updatedPerson = {...existingPerson, number:newNumber};
         personService.update(existingPerson.id,updatedPerson).then(response =>{
-          setPersons(persons.map(person => person.id !== existingPerson.id ? person : response));
-          // console.log(response);
-          setMessage(`${response.name} is updated successfully.`);
-          setMessageType(`success`);
-          setTimeout(() => {
-            setMessage(null)
-          }, 5000)
+          if (response){
+            setPersons(persons.map(person => person.id !== existingPerson.id ? person : response));
+            setMessage(`${response.name} is updated successfully.`);
+            setMessageType(`success`);
+            setTimeout(() => {
+              setMessage(null)
+            }, 5000)
+          }
+          else{
+            setPersons(persons.filter(person => person.id !== existingPerson.id));
+            setMessage(`This was removed by another window.`);
+            setMessageType(`error`);
+            setTimeout(() => {
+              setMessage(null)
+            }, 5000)
+          }
         })
         .catch(error => {
-          setMessage(`${existingPerson.name} was already removed from the server.`);
+          setMessage(error.response.data.error);
           setMessageType(`error`);
           setTimeout(() => {
             setMessage(null)
@@ -81,6 +89,14 @@ const App = () => {
       setPersons(persons.concat(returnedPerson))
       setMessage(`${returnedPerson.name} is saved.`);
       setMessageType(`success`);
+      setTimeout(() => {
+        setMessage(null)
+      }, 5000)
+    })
+    .catch(error => {
+      // this is the way to access the error message
+      setMessage(error.response.data.error);
+      setMessageType(`error`);
       setTimeout(() => {
         setMessage(null)
       }, 5000)
