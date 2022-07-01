@@ -46,10 +46,15 @@ The task for this part expects to build a fullstack webpage, connected to the fr
 - I knew about middleware, but did not know the routes can also be used as such given, `next` parameters for error handling.
 
 ## Part 4 Part 4 Testing Express servers, user administration
+This part is about Jest, a testing Library for Javascript. We also started to write a Blog app.
 - [Course](https://fullstackopen.com/en/part4)
+- [My solutions](https://github.com/emrergin/fullstackopen/tree/main/part4)
 ## Part 5 Testing React apps
 - [Course](https://fullstackopen.com/en/part5)
+- [My solutions](https://github.com/emrergin/fullstackopen/tree/main/part5)
 ## Part 6 State management with Redux
 - [Course](https://fullstackopen.com/en/part6)
+- [My solutions](https://github.com/emrergin/fullstackopen/tree/main/part6)
 ## Part 7 React router, custom hooks, styling app with CSS and webpack
 - [Course](https://fullstackopen.com/en/part7)
+- [My solutions](https://github.com/emrergin/fullstackopen/tree/main/part7)
