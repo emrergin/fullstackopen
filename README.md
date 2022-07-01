@@ -45,3 +45,11 @@ The task for this part expects to build a fullstack webpage, connected to the fr
 - I knew that express files can serve premade html files, but I did not consider to use this opportunity with frameworks before this.
 - I knew about middleware, but did not know the routes can also be used as such given, `next` parameters for error handling.
 
+## Part 4 Part 4 Testing Express servers, user administration
+- [Course](https://fullstackopen.com/en/part4)
+## Part 5 Testing React apps
+- [Course](https://fullstackopen.com/en/part5)
+## Part 6 State management with Redux
+- [Course](https://fullstackopen.com/en/part6)
+## Part 7 React router, custom hooks, styling app with CSS and webpack
+- [Course](https://fullstackopen.com/en/part7)
