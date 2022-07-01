@@ -49,6 +49,11 @@ The task for this part expects to build a fullstack webpage, connected to the fr
 This part is about Jest, a testing Library for Javascript. We also started to write a Blog app.
 - [Course](https://fullstackopen.com/en/part4)
 - [My solutions](https://github.com/emrergin/fullstackopen/tree/main/part4)
+### What I learned in Part 4
+- Thanks to the curriculum of the [Odin Project](https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript#testing-javascript) I was not a total newbie when it comes to testing. However we all know that more testing never kills anyone.
+- This is the first time I wrote tests for a backend project.
+- This is the first time I wrote tests for async operations.
+- `{...someObject,likes: 99} ` and `{likes: 99,...someObject}` are two different objects.
 ## Part 5 Testing React apps
 - [Course](https://fullstackopen.com/en/part5)
 - [My solutions](https://github.com/emrergin/fullstackopen/tree/main/part5)

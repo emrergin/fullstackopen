@@ -4,8 +4,8 @@
   "description": "bloglist for fullstackopen",
   "main": "index.js",
   "scripts": {
-    "test": "jest --verbose",
-    "dev": "nodemon index.js"
+    "test": "NODE_ENV=test jest --verbose --runInBand --forceExit",
+    "dev": "NODE_ENV=production nodemon index.js"
   },
   "keywords": [
     "fullstackopen"
@@ -14,7 +14,8 @@
   "license": "MIT",
   "devDependencies": {
     "jest": "^28.1.2",
-    "nodemon": "^2.0.18"
+    "nodemon": "^2.0.18",
+    "supertest": "^6.2.3"
   },
   "dependencies": {
     "cors": "^2.8.5",

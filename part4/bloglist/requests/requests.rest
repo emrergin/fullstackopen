@@ -1,13 +1,10 @@
-blogs http://localhost:3003/api/blogs
+GET http://localhost:3003/api/blogs
 
 ###
 GET http://localhost:3003/api/info
 
 ###
-GET http://localhost:3003/api/blogs/62bd2da2c8ac12da52e5d880
-
-###
-GET http://localhost:3003/api/blogs/5
+GET http://localhost:3003/api/blogs/62be89a4fec0cfc2a5b67251
 
 ###
 DELETE http://localhost:3003/api/blogs/62bd2cb17a3bc8cf242e2b72
@@ -24,10 +21,9 @@ content-type: application/json
 }
 
 ###
-PUT http://localhost:3003/api/persons/62bd17a16bc3c71f32a220be HTTP/1.1
+PUT http://localhost:3003/api/blogs/62be89a4fec0cfc2a5b67251 HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Ahmet Sel",
-    "number": 12345
+    "likes" : 50
 }
