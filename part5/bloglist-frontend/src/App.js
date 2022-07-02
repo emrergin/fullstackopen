@@ -12,7 +12,7 @@ import loginService from './services/login'
 const App = () => {
   const [blogs, setBlogs] = useState([])
   const [user, setUser] = useState(null)
-  const [username, setUsername] = useState('') 
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState(null)
   const [messageType, setMessageType] = useState(null)
@@ -21,7 +21,7 @@ const App = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault()
-    
+
     try {
       const user = await loginService.login({
         username, password,
@@ -29,21 +29,21 @@ const App = () => {
 
       window.localStorage.setItem(
         'loggedBlogappUser', JSON.stringify(user)
-      ) 
+      )
       blogService.setToken(user.token)
       setUser(user)
       setUsername('')
       setPassword('')
     } catch (exception) {
       setMessage('Wrong credentials')
-      setMessageType(`error`);
+      setMessageType('error')
       setTimeout(() => {
         setMessage(null)
       }, 5000)
     }
   }
 
-  const addBlog = async (event,title,author,url)=>{
+  const addBlog = async (event,title,author,url) => {
     event.preventDefault()
     const newBlog = {
       title: title,
@@ -55,23 +55,23 @@ const App = () => {
       .then(returnedBlog  => {
         noteFormRef.current.toggleVisibility()
         setBlogs(blogs.concat(returnedBlog))
-        setMessage(`${returnedBlog.title} is saved.`);
-        setMessageType(`success`);
+        setMessage(`${returnedBlog.title} is saved.`)
+        setMessageType('success')
         setTimeout(() => {
           setMessage(null)
         }, 5000)
       })
-    .catch(error => {
+      .catch(error => {
       // this is the way to access the error message
-      setMessage(error.response.data.error || error.request.statusText);
-      setMessageType(`error`);
-      setTimeout(() => {
-        setMessage(null)
-      }, 5000)
-    })
+        setMessage(error.response.data.error || error.request.statusText)
+        setMessageType('error')
+        setTimeout(() => {
+          setMessage(null)
+        }, 5000)
+      })
   }
 
-  const increaseLike = (id,user,likes,author,title,url)=>{
+  const increaseLike = (id,user,likes,author,title,url) => {
     const updatedBlog = {
       title: title,
       author: author,
@@ -82,54 +82,52 @@ const App = () => {
     blogService
       .update(updatedBlog,id)
       .then(returnedBlog  => {
-        // blogs.find(a=>a.id===id).likes+=1;
-        setBlogs(blogs.map(blog => blog.id !== id ? blog : returnedBlog));
-        setMessage(`You liked ${returnedBlog.title}.`);
-        setMessageType(`success`);
+        setBlogs(blogs.map(blog => blog.id !== id ? blog : returnedBlog))
+        setMessage(`You liked ${returnedBlog.title}.`)
+        setMessageType('success')
         setTimeout(() => {
           setMessage(null)
         }, 5000)
       })
-    .catch(error => {
+      .catch(error => {
       // this is the way to access the error message
-      setMessage(error.response.data.error || error.request.statusText);
-      setMessageType(`error`);
-      setTimeout(() => {
-        setMessage(null)
-      }, 5000)
-    })
+        setMessage(error.response.data.error || error.request.statusText)
+        setMessageType('error')
+        setTimeout(() => {
+          setMessage(null)
+        }, 5000)
+      })
   }
 
-  const deleteBlog = (id,title) =>{
-    if (window.confirm(`Do you want to remove ${title} ?`)) { 
-    blogService
-      .deleteBlog(id)
-      .then(()  => {
-        // blogs.find(a=>a.id===id).likes+=1;
-        setBlogs(blogs.filter(blog => blog.id !== id ));
-        setMessage(`You deleted ${title}.`);
-        setMessageType(`success`);
-        setTimeout(() => {
-          setMessage(null)
-        }, 5000)
-      })
-    .catch(error => {
-      // this is the way to access the error message
-      setMessage(error.response.data.error || error.request.statusText);
-      setMessageType(`error`);
-      setTimeout(() => {
-        setMessage(null)
-      }, 5000)
-    })
-  }else{return false;}
+  const deleteBlog = (id,title) => {
+    if (window.confirm(`Do you want to remove ${title} ?`)) {
+      blogService
+        .deleteBlog(id)
+        .then(()  => {
+          setBlogs(blogs.filter(blog => blog.id !== id ))
+          setMessage(`You deleted ${title}.`)
+          setMessageType('success')
+          setTimeout(() => {
+            setMessage(null)
+          }, 5000)
+        })
+        .catch(error => {
+          // this is the way to access the error message
+          setMessage(error.response.data.error || error.request.statusText)
+          setMessageType('error')
+          setTimeout(() => {
+            setMessage(null)
+          }, 5000)
+        })
+    }else{return false}
   }
 
   useEffect(() => {
-    blogService.getAll().then(blogs =>{
-      blogs.sort((a,b)=>b.likes-a.likes)
+    blogService.getAll().then(blogs => {
+      blogs.sort((a,b) => b.likes-a.likes)
       setBlogs( blogs )
     }
-    )  
+    )
   }, [])
 
   useEffect(() => {
@@ -145,31 +143,31 @@ const App = () => {
   return (
     <div>
       <Notification message={message} messageType={messageType}/>
-      {user===null && <LoginForm handleLogin={handleLogin} 
-                                  username={username} 
-                                  password={password} 
-                                  userChange={setUsername} 
-                                  passChange={setPassword}/>}
+      {user===null && <LoginForm handleLogin={handleLogin}
+        username={username}
+        password={password}
+        userChange={setUsername}
+        passChange={setPassword}/>}
       {user!==null &&
       <div>
         <p>{user.name} is logged in.</p>
-        <button onClick={()=>{window.localStorage.removeItem('loggedBlogappUser')
-                              setUser(null)}
-          }> Logout </button>
+        <button onClick={() => {window.localStorage.removeItem('loggedBlogappUser')
+          setUser(null)}
+        }> Logout </button>
       </div>}
-      {user!==null && 
+      {user!==null &&
       <Togglable buttonLabel="new note" ref={noteFormRef}>
         <BlogForm addBlog={addBlog}/>
       </Togglable>}
-                
+
       {user!==null && <><h2>blogs</h2>
         {blogs.map(blog =>
-          <Blog key={blog.id} blog={blog} 
-          increaseHandler={increaseLike}
-          deleteHandler = {deleteBlog}
-          user={user} />
+          <Blog key={blog.id} blog={blog}
+            increaseHandler={increaseLike}
+            deleteHandler = {deleteBlog}
+            user={user} />
         )}
-        </>
+      </>
       }
     </div>
   )
