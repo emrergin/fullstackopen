@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Blog from './components/Blog'
 import LoginForm from './components/LoginForm'
 import BlogForm from './components/BlogForm'
 import Notification from './components/Notification'
+import Togglable from './components/Togglable'
+
 import blogService from './services/blogs'
 import loginService from './services/login'
 
@@ -14,10 +16,8 @@ const App = () => {
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState(null)
   const [messageType, setMessageType] = useState(null)
-  const [title, setTitle] = useState('')
-  const [url, setUrl] = useState('')
-  const [author, setAuthor] = useState('')
 
+  const noteFormRef = useRef()
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -43,7 +43,7 @@ const App = () => {
     }
   }
 
-  const addBlog = async (event)=>{
+  const addBlog = async (event,title,author,url)=>{
     event.preventDefault()
     const newBlog = {
       title: title,
@@ -51,21 +51,19 @@ const App = () => {
       url: url
     }
     blogService
-    .create(newBlog)
-    .then(returnedBlog  => {
-      setTitle(``);
-      setUrl(``);
-      setAuthor(``);
-      setBlogs(blogs.concat(returnedBlog))
-      setMessage(`${returnedBlog.title} is saved.`);
-      setMessageType(`success`);
-      setTimeout(() => {
-        setMessage(null)
-      }, 5000)
-    })
+      .create(newBlog)
+      .then(returnedBlog  => {
+        noteFormRef.current.toggleVisibility()
+        setBlogs(blogs.concat(returnedBlog))
+        setMessage(`${returnedBlog.title} is saved.`);
+        setMessageType(`success`);
+        setTimeout(() => {
+          setMessage(null)
+        }, 5000)
+      })
     .catch(error => {
       // this is the way to access the error message
-      setMessage(error.response.data.error);
+      setMessage(error.response.data.error || error.request.statusText);
       setMessageType(`error`);
       setTimeout(() => {
         setMessage(null)
@@ -73,11 +71,64 @@ const App = () => {
     })
   }
 
-  
+  const increaseLike = (id,user,likes,author,title,url)=>{
+    const updatedBlog = {
+      title: title,
+      author: author,
+      url: url,
+      user: user,
+      likes:likes
+    }
+    blogService
+      .update(updatedBlog,id)
+      .then(returnedBlog  => {
+        // blogs.find(a=>a.id===id).likes+=1;
+        setBlogs(blogs.map(blog => blog.id !== id ? blog : returnedBlog));
+        setMessage(`You liked ${returnedBlog.title}.`);
+        setMessageType(`success`);
+        setTimeout(() => {
+          setMessage(null)
+        }, 5000)
+      })
+    .catch(error => {
+      // this is the way to access the error message
+      setMessage(error.response.data.error || error.request.statusText);
+      setMessageType(`error`);
+      setTimeout(() => {
+        setMessage(null)
+      }, 5000)
+    })
+  }
+
+  const deleteBlog = (id,title) =>{
+    if (window.confirm(`Do you want to remove ${title} ?`)) { 
+    blogService
+      .deleteBlog(id)
+      .then(()  => {
+        // blogs.find(a=>a.id===id).likes+=1;
+        setBlogs(blogs.filter(blog => blog.id !== id ));
+        setMessage(`You deleted ${title}.`);
+        setMessageType(`success`);
+        setTimeout(() => {
+          setMessage(null)
+        }, 5000)
+      })
+    .catch(error => {
+      // this is the way to access the error message
+      setMessage(error.response.data.error || error.request.statusText);
+      setMessageType(`error`);
+      setTimeout(() => {
+        setMessage(null)
+      }, 5000)
+    })
+  }else{return false;}
+  }
 
   useEffect(() => {
-    blogService.getAll().then(blogs =>
+    blogService.getAll().then(blogs =>{
+      blogs.sort((a,b)=>b.likes-a.likes)
       setBlogs( blogs )
+    }
     )  
   }, [])
 
@@ -86,9 +137,11 @@ const App = () => {
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       setUser(user)
-      // noteService.setToken(user.token)
+      blogService.setToken(user.token)
     }
   }, [])
+
+
   return (
     <div>
       <Notification message={message} messageType={messageType}/>
@@ -104,18 +157,17 @@ const App = () => {
                               setUser(null)}
           }> Logout </button>
       </div>}
-      {user!==null && <BlogForm addBlog={addBlog} 
-                                  newTitle={title} 
-                                  titleChange={setTitle} 
-                                  newAuthor={author} 
-                                  authorChange={setAuthor} 
-                                  newUrl={url} 
-                                  urlChange={setUrl} 
-                                  />}
+      {user!==null && 
+      <Togglable buttonLabel="new note" ref={noteFormRef}>
+        <BlogForm addBlog={addBlog}/>
+      </Togglable>}
                 
       {user!==null && <><h2>blogs</h2>
         {blogs.map(blog =>
-          <Blog key={blog.id} blog={blog} />
+          <Blog key={blog.id} blog={blog} 
+          increaseHandler={increaseLike}
+          deleteHandler = {deleteBlog}
+          user={user} />
         )}
         </>
       }

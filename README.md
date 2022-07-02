@@ -63,6 +63,10 @@ This part is about Jest, a testing Library for Javascript. We also started to wr
 ## Part 5 Testing React apps
 - [Course](https://fullstackopen.com/en/part5)
 - [My solutions](https://github.com/emrergin/fullstackopen/tree/main/part5)
+### What I learned in Part 5
+- I learned what `props.child` is and how can it be used.
+- This is my first time using `useRef`,`forwardRef` and `useImperativeHandle`.
+
 ## Part 6 State management with Redux
 - [Course](https://fullstackopen.com/en/part6)
 - [My solutions](https://github.com/emrergin/fullstackopen/tree/main/part6)

@@ -1,7 +1,5 @@
 const blogsRouter = require('express').Router()
 const Blog = require('../models/blog')
-// const User = require('../models/user')
-// const jwt = require('jsonwebtoken')
 const middleware = require('../utils/middleware')
 
 blogsRouter.get('/', (request, response) => {
@@ -32,12 +30,12 @@ blogsRouter.post('/', middleware.userExtractor, async (request, response, next) 
       await currentUser.save();
       response.status(201).json(savedBlog)
     }else{
-      response.status(400)
-      next( new Error('url and title are missing'))
+      return response.status(401).json({ error: 'url and title are missing' })
+      // next( new Error('url and title are missing'))
     }
 })
 
-blogsRouter.delete('/:id', middleware.userExtractor,async (request, response, next) => {
+blogsRouter.delete('/:id', middleware.userExtractor,async (request, response) => {
   const currentUser = request.user;
   const theBlogToDelete = await Blog.findOne({_id:request.params.id, user:currentUser });
   if (theBlogToDelete){
@@ -53,6 +51,7 @@ blogsRouter.put('/:id', (request, response, next) => {
   const body = request.body
 
   const blog = {
+    user: body.user,
     title: body.title,
     author: body.author,
     url: body.url,
@@ -60,8 +59,9 @@ blogsRouter.put('/:id', (request, response, next) => {
   }
 
   Blog.findByIdAndUpdate(request.params.id, blog, { new: true })
+    .populate(`user`,{ username: 1, name: 1 })
     .then(updatedBlog => {
-      response.status(204).json(updatedBlog)
+      response.status(200).json(updatedBlog)
     })
     .catch(error => next(error))
 })

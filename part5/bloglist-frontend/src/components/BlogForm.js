@@ -1,19 +1,28 @@
+import { useState } from "react"
+
 const BlogForm = ({addBlog,newTitle,titleChange,newAuthor,authorChange,newUrl,urlChange}) => {
+  const [title, setTitle] = useState('')
+  const [url, setUrl] = useState('')
+  const [author, setAuthor] = useState('')
+
     return (     
-    <form onSubmit={addBlog}>
+    <form onSubmit={(event)=>{addBlog(event,title,url,author)
+                          setTitle(``);
+                          setUrl(``);
+                          setAuthor(``);}}>
       <h2>Create new</h2>
       <div>
       <label htmlFor="titleBox">Title:</label>
         <input id="titleBox"
           value={newTitle}
-          onChange={({ target }) => titleChange(target.value)}
+          onChange={({ target }) => setTitle(target.value)}
         />
       </div>
       <div>
       <label htmlFor="authorBox">Author:</label>
         <input id="authorBox"
           value={newAuthor}
-          onChange={({ target }) => authorChange(target.value)}
+          onChange={({ target }) => setAuthor(target.value)}
         />
       </div>
       <div>
@@ -21,7 +30,7 @@ const BlogForm = ({addBlog,newTitle,titleChange,newAuthor,authorChange,newUrl,ur
         <input
           id = "urlBox"
           value={newUrl}
-          onChange={({ target }) => urlChange(target.value)}
+          onChange={({ target }) => setUrl(target.value)}
         />
       </div>
       <div>
