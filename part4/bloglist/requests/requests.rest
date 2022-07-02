@@ -12,12 +12,13 @@ DELETE http://localhost:3003/api/blogs/62bd2cb17a3bc8cf242e2b72
 ###
 POST http://localhost:3003/api/blogs HTTP/1.1
 content-type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1zYXNhdCIsImlkIjoiNjJiZmM5ZDQ3MzYzYTk0NzRiYzgzNTgxIiwiaWF0IjoxNjU2NzM2NDA0fQ.7a8euyo1pkSVxp2zLuA-pbU7O1D2xfk-8Zt4OW_-LX0
 
 {
-    "title": "With hardships comes ease",
-    "author": "Ahmet Sel",
+    "title": "to be deleted",
+    "author": "deeletion Sel",
     "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "likes" : 5
+    "likes": 5
 }
 
 ###
@@ -27,3 +28,29 @@ content-type: application/json
 {
     "likes" : 50
 }
+
+###
+POST http://localhost:3003/api/users HTTP/1.1
+content-type: application/json
+
+{
+    "username" : "Msasat",
+    "name" : "Ahmet",
+    "password" : "56768"
+}
+###
+
+GET http://localhost:3003/api/users HTTP/1.1
+
+###
+post http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+    "username": "Msasat",
+    "password": "56768"
+}
+
+###
+DELETE http://localhost:3003/api/blogs/62bff138ec24a609e8bac44f
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1zYXNhdCIsImlkIjoiNjJiZmM5ZDQ3MzYzYTk0NzRiYzgzNTgxIiwiaWF0IjoxNjU2NzM2NDA0fQ.7a8euyo1pkSVxp2zLuA-pbU7O1D2xfk-8Zt4OW_-LX0
