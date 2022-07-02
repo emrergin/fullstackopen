@@ -53,6 +53,7 @@ This part is about Jest, a testing Library for Javascript. We also started to wr
 - Thanks to the curriculum of the [Odin Project](https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript#testing-javascript) I was not a total newbie when it comes to testing. However we all know that more testing never kills anyone.
 - This is the first time I wrote tests for a backend project.
 - This is the first time I wrote tests for async operations.
+- This is the first time I wrote integration tests.
 - This is the first time I implemented *JWT*, I had used *PassportJS* before.
 - This is the first time I wrote tests for authenticated actions.
 - Again, not the first time I used middleware, but I feel way more comfortable with them than before.
