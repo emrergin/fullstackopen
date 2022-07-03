@@ -66,6 +66,9 @@ This part is about Jest, a testing Library for Javascript. We also started to wr
 ### What I learned in Part 5
 - I learned what `props.child` is and how can it be used.
 - This is my first time using `useRef`,`forwardRef` and `useImperativeHandle`.
+- This is the first time I am writing for components.
+- This is the first time I am emulating user input for testing.
+- I had to learn how to [isolate tests](https://kentcdodds.com/blog/test-isolation-with-react) with *React*.
 
 ## Part 6 State management with Redux
 - [Course](https://fullstackopen.com/en/part6)
