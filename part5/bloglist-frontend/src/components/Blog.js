@@ -11,7 +11,7 @@ const Blog = ({ blog, increaseHandler, deleteHandler,user }) => {
     }
     const [isFullView,setFullView]=useState(false)
     return(
-        <div style={blogStyle}>
+        <div style={blogStyle} className="blogItem">
             {blog.title} {blog.author}
             <button onClick={() => {setFullView(!isFullView)}} className="showButton">{isFullView ? 'hide' : 'view'}</button>
             {isFullView && <>

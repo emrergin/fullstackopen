@@ -24,7 +24,7 @@ describe('the form component', () => {
 
         expect(addBlog.mock.calls).toHaveLength(1)
         expect(addBlog.mock.calls[0][1]).toBe('Küçük Kadınlar' )
-        expect(addBlog.mock.calls[0][2]).toBe('https://fullstackopen.com/en/part5/testing_react_apps#testing-the-forms' )
-        expect(addBlog.mock.calls[0][3]).toBe('Kemalettin Tuğcu' )
+        expect(addBlog.mock.calls[0][2]).toBe('Kemalettin Tuğcu' )
+        expect(addBlog.mock.calls[0][3]).toBe('https://fullstackopen.com/en/part5/testing_react_apps#testing-the-forms' )
     })
 })

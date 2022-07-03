@@ -82,7 +82,7 @@ const App = () => {
         blogService
             .update(updatedBlog,id)
             .then(returnedBlog  => {
-                setBlogs(blogs.map(blog => blog.id !== id ? blog : returnedBlog))
+                setBlogs(blogs.map(blog => blog.id !== id ? blog : returnedBlog).sort((a,b) => b.likes-a.likes))
                 setMessage(`You liked ${returnedBlog.title}.`)
                 setMessageType('success')
                 setTimeout(() => {

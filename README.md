@@ -69,6 +69,9 @@ This part is about Jest, a testing Library for Javascript. We also started to wr
 - This is the first time I am writing for components.
 - This is the first time I am emulating user input for testing.
 - I had to learn how to [isolate tests](https://kentcdodds.com/blog/test-isolation-with-react) with *React*.
+- I learned how to use [Cypress](https://www.cypress.io/) and done my first *E2E testing*.
+- I learned different node environments and how they are used.
+- I learned to stop worrying and love to write testing.
 
 ## Part 6 State management with Redux
 - [Course](https://fullstackopen.com/en/part6)

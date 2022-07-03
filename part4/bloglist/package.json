@@ -8,7 +8,8 @@
     "start": "NODE_ENV=production node index.js",
     "dev": "NODE_ENV=development  nodemon index.js",
     "testUsers": "npm test -- -t 'tests related with users'",
-    "testBackend" : "npm test -- tests/note_api.test.js"
+    "testBackend" : "npm test -- tests/note_api.test.js",
+    "start:test": "NODE_ENV=test node index.js"
   },
   "keywords": [
     "fullstackopen"
