@@ -45,7 +45,7 @@ The task for this part expects to build a fullstack webpage, connected to the fr
 - I knew that express files can serve premade html files, but I did not consider to use this opportunity with frameworks before this.
 - I knew about middleware, but did not know the routes can also be used as such given, `next` parameters for error handling.
 
-## Part 4 Part 4 Testing Express servers, user administration
+## Part 4 Testing Express servers, user administration
 This part is about Jest, a testing Library for Javascript. We also started to write a Blog app.
 - [Course](https://fullstackopen.com/en/part4)
 - [My solutions](https://github.com/emrergin/fullstackopen/tree/main/part4)
@@ -61,6 +61,7 @@ This part is about Jest, a testing Library for Javascript. We also started to wr
 - I learned what *Redis* is generally used for.
 
 ## Part 5 Testing React apps
+This part was about unit tests for the frontend and E2E tests. We wrote the frontend for the blog list app whose backend that we wrote in the previous part.
 - [Course](https://fullstackopen.com/en/part5)
 - [My solutions](https://github.com/emrergin/fullstackopen/tree/main/part5)
 ### What I learned in Part 5
@@ -74,8 +75,14 @@ This part is about Jest, a testing Library for Javascript. We also started to wr
 - I learned to stop worrying and love to write testing.
 
 ## Part 6 State management with Redux
+This part is all about Redux. The exercises requested introducing Redux to [unicafe](https://github.com/emrergin/fullstackopen/tree/main/part1/unicafe) and [anecdotes] projects from [Part1](https://github.com/emrergin/fullstackopen/tree/main/part1).
 - [Course](https://fullstackopen.com/en/part6)
 - [My solutions](https://github.com/emrergin/fullstackopen/tree/main/part6)
+### What I learned in Part 6
+- This is the first time I am using a state-management library. While I am better versed in **Vue**, even in that, I did not need complex state-management, so I have not used *Vuex* or *Pinia* before.
+- I learned how bulky Redux can feel, especially for small projects.
+- I used Redux Toolkit for the first time.
+
 ## Part 7 React router, custom hooks, styling app with CSS and webpack
 - [Course](https://fullstackopen.com/en/part7)
 - [My solutions](https://github.com/emrergin/fullstackopen/tree/main/part7)

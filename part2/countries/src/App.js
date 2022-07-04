@@ -3,21 +3,6 @@ import axios from 'axios';
 
 import CountryInfo from './components/CountryInfo';
 
-// const CountryInfo = ({country}) => {
-//   return(
-//     <div>
-//       <h2>{country.name.common}</h2>
-//       <p>Capital: {country.capital[0]}</p>
-//       <p>Area: {country.area}</p>
-//       <h3>languages:</h3>
-//       <ul>
-//         {Object.keys(country.languages).map((key,index)=> <li key={index}>{country.languages[key]}</li>)}
-//       </ul>      
-//       <img src={country.flags.png} alt={`Flag of ${country.name.common}`}/>
-//     </div>
-//   )
-// }
-
 function App() {
   const [searchQuery,setSearchQuery]=useState('');
   const [countries, setCountries]=useState([]);
