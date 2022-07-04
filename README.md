@@ -85,8 +85,3 @@ This part is all about Redux. The exercises requested introducing Redux to [unic
 - I learned to use hooks such as `useSelector` and `useDispatch` to access the store.
 - I also learned to use `connect` function to replicate the same functionality.
 - I learned what are Presentational and Container components.
-
-## Part 7 React router, custom hooks, styling app with CSS and webpack
-- [Course](https://fullstackopen.com/en/part7)
-- [My solutions](https://github.com/emrergin/fullstackopen/tree/main/part7)
-### What I learned in Part 7
