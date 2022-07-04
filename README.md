@@ -82,6 +82,9 @@ This part is all about Redux. The exercises requested introducing Redux to [unic
 - This is the first time I am using a state-management library. While I am better versed in **Vue**, even in that, I did not need complex state-management, so I have not used *Vuex* or *Pinia* before.
 - I learned how bulky Redux can feel, especially for small projects.
 - I used Redux Toolkit for the first time.
+- I learned to use hooks such as `useSelector` and `useDispatch` to access the store.
+- I also learned to use `connect` function to replicate the same functionality.
+- I learned what are Presentational and Container components.
 
 ## Part 7 React router, custom hooks, styling app with CSS and webpack
 - [Course](https://fullstackopen.com/en/part7)
