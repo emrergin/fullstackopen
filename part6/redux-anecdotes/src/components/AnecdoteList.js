@@ -1,23 +1,24 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { addVote } from '../reducers/anecdoteReducer'
-import { addNotification,deactivateNotification } from '../reducers/notificationReducer'
+import { updateAnecdote } from '../reducers/anecdoteReducer'
+import { setNotification } from '../reducers/notificationReducer'
 
-const getId = () => (100000 * Math.random()).toFixed(0)
+// const getId = () => (100000 * Math.random()).toFixed(0)
 
 const AnecdoteList = () => {
     const searchQuery = useSelector(state => state.filter)
-    const anecdotes = useSelector(state => state.anecdotes.filter(a=>a.content.toUpperCase().indexOf(searchQuery.toUpperCase())!==-1))
+    const anecdotes = useSelector(state => state.anecdotes.filter(a=> a.content.toUpperCase().indexOf(searchQuery.toUpperCase())!==-1))
 
     const dispatch = useDispatch()
   
-    const vote= (id,text) =>{
-        console.log(`You voted ${text}`)
-        dispatch(addVote(id));
-        const notificationId= getId()
-        dispatch(addNotification({message:`You voted ${text}` , id: notificationId}))
-        setTimeout(() => {
-            dispatch(deactivateNotification(notificationId))
-          }, 5000)
+    const vote= (anecdoteToChange) =>{
+
+        const changedAnecdote = { 
+        ...anecdoteToChange, 
+        votes: anecdoteToChange.votes+1 
+        }
+        console.log(`You voted ${anecdoteToChange.content}`)
+        dispatch(updateAnecdote(changedAnecdote));
+        dispatch(setNotification(`You voted ${anecdoteToChange.content}.`,5))
     }
     return (         
         <div>
@@ -28,7 +29,7 @@ const AnecdoteList = () => {
                 </div>
                 <div>
                 has {anecdote.votes}
-                <button onClick={() => vote(anecdote.id, anecdote.content)}>vote</button>
+                <button onClick={() => vote(anecdote)}>vote</button>
                 </div>
             </div>
             )}

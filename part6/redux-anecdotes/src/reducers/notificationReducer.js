@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = [{id:0, message:'' , active: false}]
-
+const getId = () => (100000 * Math.random()).toFixed(0)
 
 const notificationSlice = createSlice({
     name: 'notifications',
@@ -25,4 +25,14 @@ const notificationSlice = createSlice({
   })
   
   export const { addNotification, deactivateNotification } = notificationSlice.actions
+
+  export const setNotification = (text,time) => {
+    return async dispatch => {
+      const notificationId=getId();
+      dispatch(addNotification({message:text, id:notificationId}))
+      setTimeout(() => {
+            dispatch(deactivateNotification(notificationId))
+          }, time*1000)
+    }
+  }
   export default notificationSlice.reducer
