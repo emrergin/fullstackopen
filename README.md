@@ -84,13 +84,17 @@ This part is all about Redux. The exercises requested introducing Redux to [unic
 - I used Redux Toolkit for the first time.
 - I learned to use hooks such as `useSelector` and `useDispatch` to access the store.
 - I also learned to use `connect` function to replicate the same functionality.
-- I learned what are Presentational and Container components.
+- I learned what Presentational and Container components are.
 
 ## Part 7 React router, custom hooks, styling app with CSS and webpack
 
-Main bulk of this part was about improving the Bloglist Frontend we made in Part 5. The exercises were detached from the reading material to an extent.
+Main bulk of this part was about improving the Bloglist Frontend we made in *Part 5*. The exercises were detached from the reading material to an extent.
 
 - [Course](https://fullstackopen.com/en/part7)
 - [My solutions](https://github.com/emrergin/fullstackopen/tree/main/part7)
 
 ### What I learned in Part 7
+- Note that, this part required modifications rather than writing from scratch, so most of the code included is not mine.
+- I learned how to use `useNavigation` and `useParams` hooks.
+- I learned some functionality of the Routers can only be used outside of a component.
+- I wrote my first custom hook.
