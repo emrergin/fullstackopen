@@ -94,7 +94,7 @@ Main bulk of this part was about improving the Bloglist Frontend we made in *Par
 - [My solutions](https://github.com/emrergin/fullstackopen/tree/main/part7)
 
 ### What I learned in Part 7
-- Note that, this part required modifications rather than writing from scratch, so most of the code included is not mine.
+- Note that, this part required modifications rather than writing from scratch, so some of the code included is not mine.
 - I learned how to use `useNavigation` and `useParams` hooks.
 - I learned some functionality of the Routers can only be used outside of a component.
 - I wrote my first custom hook.
