@@ -14,12 +14,28 @@ import { initializeBlogs, appendBlog } from "./reducers/blogsReducer";
 
 import blogService from "./services/blogs";
 import axios from "axios";
-import { Routes, Route, Link,  useMatch } from "react-router-dom";
+import { Routes, Route, Link, useMatch } from "react-router-dom";
 
-const MainView = ({ blogs, user, addBlog, sendMessage, noteFormRef }) => {
+import { Table, Navbar,Nav, Button } from "react-bootstrap";
+import styled from 'styled-components'
+
+const padding = {
+  padding: 5,
+};
+const MainListItem = styled.div`
+  padding: 2ch 5ch;
+  border: solid;
+  border-width: 1;
+  margin-bottom: 10;
+  border-radius: 3px;
+  `
+
+
+const MainView = ({ blogs, user, addBlog, noteFormRef }) => {
   if (!user) {
     return null;
   }
+
   return (
     <>
       <Togglable buttonLabel="new note" ref={noteFormRef}>
@@ -27,18 +43,19 @@ const MainView = ({ blogs, user, addBlog, sendMessage, noteFormRef }) => {
       </Togglable>
 
       {blogs.map((blog) => (
-        <Blog key={blog.id} blog={blog} sendMessage={sendMessage} user={user} />
+        <MainListItem key={blog.id}>
+          <Link style={padding} to={`/blogs/${blog.id}`}>
+            {blog.title}
+          </Link>
+        </MainListItem>
       ))}
     </>
   );
 };
 
 const Users = ({ users }) => {
-  const padding = {
-    padding: 5
-  }
   return (
-    <table>
+    <Table striped>
       <thead>
         <tr>
           <th>name</th>
@@ -51,17 +68,22 @@ const Users = ({ users }) => {
           <tr key={user.id}>
             <td>{user.name}</td>
             <td>{user.blogs.length}</td>
-            <td> <Link style={padding} to={`/users/${user.id}`}>User Page</Link></td>
+            <td>
+              {" "}
+              <Link style={padding} to={`/users/${user.id}`}>
+                User Page
+              </Link>
+            </td>
           </tr>
         ))}
       </tbody>
-    </table>
+    </Table>
   );
 };
 
 const User = ({ individualUser }) => {
-  if (!individualUser){
-    return null
+  if (!individualUser) {
+    return null;
   }
   return (
     <div>
@@ -78,19 +100,27 @@ const User = ({ individualUser }) => {
 
 const App = () => {
   const [users, setUsers] = useState([]);
-  const [individualUser, setIndividualUser]=useState(null);
 
   const noteFormRef = useRef();
   const dispatch = useDispatch();
-  const match = useMatch('/users/:id');
-
   let [blogs, user] = useSelector((state) => [state.blogs, state.user]);
-  let timeoutID = null;
+  let timeoutID =  useRef();
+
+  const matchUser = useMatch("/users/:id");
+  const matchBlog = useMatch("/blogs/:id");
+
+  const individualUser = matchUser
+    ? users.find((user) => user.id === matchUser.params.id)
+    : null;
+
+  const individualBlog = matchBlog
+    ? blogs.find((blog) => blog.id === matchBlog.params.id)
+    : null;
 
   const sendMessage = (message, messageType, timeout = 5000) => {
-    clearTimeout(timeoutID);
+    clearTimeout(timeoutID.current);
     dispatch(changeNotification({ message, messageType }));
-    timeoutID = setTimeout(() => dispatch(removeNotification()), timeout);
+    timeoutID.current = setTimeout(() => dispatch(removeNotification()), timeout);
   };
 
   const addBlog = async (event, title, author, url) => {
@@ -114,21 +144,8 @@ const App = () => {
         );
       });
   };
-
   useEffect(() => {
     dispatch(initializeBlogs());
-    const getAll = async () => {
-      const request = await axios.get("/api/users");
-      setUsers(request.data);    
-    };
-    const userN = match     
-    ? users.find(user => user.id === Number(match.params.id))    
-    : null
-    setIndividualUser(userN)
-    getAll();
-  }, [dispatch,users,match]);
-
-  useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem("loggedBlogappUser");
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
@@ -137,44 +154,77 @@ const App = () => {
     }
   }, [dispatch]);
 
-  return (
-      <div>
-        <Notification />
-        {user === null && <LoginForm />}
-        {user !== null && (
-          <div>
-            <p>{user.name} is logged in.</p>
-            <button
-              onClick={() => {
-                window.localStorage.removeItem("loggedBlogappUser");
-                dispatch(removeUser());
-              }}
-            >
-              {" "}
-              Logout{" "}
-            </button>
-          </div>
-        )}
-        <h2>blogs</h2>
+  useEffect(() => {
+    const getAll = async () => {
+      const request = await axios.get("/api/users");
+      setUsers(request.data);
+    };
+    getAll();
+  }, [dispatch]);
 
-        <Routes>
-          {/* <Route path="/notes" element={<Notes />} /> */}
-          <Route path="/users/:id" element={<User individualUser={individualUser} />} />
-          <Route path="/users" element={<Users users={users} />} />
-          <Route
-            path="/"
-            element={
-              <MainView
-                blogs={blogs}
-                user={user}
-                addBlog={addBlog}
-                sendMessage={sendMessage}
-                noteFormRef={noteFormRef}
-              />
-            }
-          />
-        </Routes>
-      </div>
+  return (
+    <div className="container">
+      <Notification />
+
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="#" as="span">
+              <Link style={padding} to="/">blogs</Link>
+            </Nav.Link>
+            <Nav.Link href="#" as="span">
+              <Link style={padding} to="/users">users</Link>
+            </Nav.Link>
+            <Nav.Link href="#" as="span">
+              {user
+                ? 
+                <span>
+                  <span>{user.name} is logged in.</span>
+                  <Button variant="secondary"
+                    onClick={() => {
+                      window.localStorage.removeItem("loggedBlogappUser");
+                      dispatch(removeUser());
+                    }}
+                  >
+                    {" "}
+                    Logout{" "}
+                  </Button>
+                </span>
+                : <LoginForm />
+              }
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+
+      {user && <h2>blogs</h2>}
+
+      <Routes>
+        <Route
+          path="/users/:id"
+          element={<User individualUser={individualUser} />}
+        />
+        <Route path="/users" element={<Users users={users} />} />
+        <Route
+          path="/blogs/:id"
+          element={
+            <Blog blog={individualBlog} sendMessage={sendMessage} user={user} />
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <MainView
+              blogs={blogs}
+              user={user}
+              addBlog={addBlog}
+              noteFormRef={noteFormRef}
+            />
+          }
+        />
+      </Routes>
+    </div>
   );
 };
 

@@ -97,4 +97,8 @@ Main bulk of this part was about improving the Bloglist Frontend we made in *Par
 - Note that, this part required modifications rather than writing from scratch, so some of the code included is not mine.
 - I learned how to use `useNavigation` and `useParams` hooks.
 - I learned some functionality of the Routers can only be used outside of a component.
+- I used parametrized routing.
 - I wrote my first custom hook.
+- I learned about some useful React libraries, like: [formik](https://www.npmjs.com/package/formik) and [recharts](https://recharts.org/en-US/).
+- I did a lot of refactoring, while adding new features to both the backend and to the frontend for an existing codebase.
+- I used my first component libraries with React, namely [react-bootstrap](https://react-bootstrap.github.io/) and [styled-components](https://styled-components.com/).

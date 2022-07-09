@@ -33,5 +33,10 @@ const deleteBlog = async (id) => {
   return request.then((response) => response.data);
 };
 
+const comment = async (newObject, id) => {
+  const request = axios.post(`${baseUrl}/${id}/comments`, newObject);
+  return request.then((response) => response.data);
+};
+
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { getAll, create, setToken, update, deleteBlog };
+export default { getAll, create, setToken, update, deleteBlog, comment };

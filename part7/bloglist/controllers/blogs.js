@@ -10,7 +10,24 @@ blogsRouter.get('/', (request, response) => {
         response.json(blogs);
       })
   })
+
+blogsRouter.post('/:id/comments', async (request, response, next) => {
+  const comment = request.body.comment;
   
+  let blogToBeUpdated = await Blog.findById(request.params.id)
+  let commentList = blogToBeUpdated.comments ? blogToBeUpdated.comments : [];
+
+  let updatedBlog = {
+    ...blogToBeUpdated,
+    comments: commentList.push(comment)
+  }
+
+  let responseUpdate = await Blog.findByIdAndUpdate(request.params.id, updatedBlog, { new: true })
+
+  return response.status(200).json(responseUpdate)
+  
+})  
+
 blogsRouter.post('/', middleware.userExtractor, async (request, response, next) => {
     const body = request.body;
     const currentUser = request.user;
@@ -65,5 +82,7 @@ blogsRouter.put('/:id', (request, response, next) => {
     })
     .catch(error => next(error))
 })
+
+
 
 module.exports = blogsRouter
