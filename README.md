@@ -102,3 +102,21 @@ Main bulk of this part was about improving the Bloglist Frontend we made in *Par
 - I learned about some useful React libraries, like: [formik](https://www.npmjs.com/package/formik) and [recharts](https://recharts.org/en-US/).
 - I did a lot of refactoring, while adding new features to both the backend and to the frontend for an existing codebase.
 - I used my first component libraries with React, namely [react-bootstrap](https://react-bootstrap.github.io/) and [styled-components](https://styled-components.com/).
+
+## Part 8 GraphQL
+Skipping GraphQL for now.
+
+## Part 9 TypeScript
+
+This part focuses both typing Express and React apps.
+
+- [Course](https://fullstackopen.com/en/part9)
+- [My solutions](https://github.com/emrergin/fullstackopen/tree/main/part9)
+
+### What I learned in Part 9
+- I learned how to use `require.main` to skip the global scope for the functions I am exporting.
+- I learned that calling a function from command line, starts the numbering of the alternatives from 2.
+- I learned how `generics` can be used to define stricter types (such as positive integers), with the help of `template literal types`.
+- I learned that type unknown is used for errors.
+- I learned the only acceptable use case for any is for user input.
+- I learned that TypeScript can't do math, so `declare var a : -1 | 0 | 1; a = -a;` gives error. For that, we have casting which can be used with `as` keyword.
