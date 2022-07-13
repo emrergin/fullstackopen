@@ -116,7 +116,8 @@ This part focuses both typing Express and React apps.
 ### What I learned in Part 9
 - I learned how to use `require.main` to skip the global scope for the functions I am exporting.
 - I learned that calling a function from command line, starts the numbering of the alternatives from 2.
-- I learned how `generics` can be used to define stricter types (such as positive integers), with the help of `template literal types`.
+- I learned how **generics** can be used to define stricter types (such as positive integers), with the help of **template literal types**.
 - I learned that type unknown is used for errors.
 - I learned the only acceptable use case for any is for user input.
-- I learned that TypeScript can't do math, so `declare var a : -1 | 0 | 1; a = -a;` gives error. For that, we have casting which can be used with `as` keyword.
+- I learned that TypeScript can't do math, so `declare var a : -1 | 0 | 1; a = -a;` gives error. For that, we have **casting** which can be used with `as` keyword.
+- When calling scripts from command line, config can be written as: `npm run script -- --option`.
