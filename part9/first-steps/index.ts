@@ -39,6 +39,14 @@ app.post('/exercises', (_req, res) => {
        });
       return;
     } 
+    daily_exercises.forEach(a=>{
+      if (isNaN(Number(a))){
+        res.status(400).send({
+          error: "malformatted parameters"
+         });
+         return;
+      }
+    });
     const responseObject= 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-argument
     calculateExercises(daily_exercises,target);

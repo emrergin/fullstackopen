@@ -119,5 +119,8 @@ This part focuses both typing Express and React apps.
 - I learned how **generics** can be used to define stricter types (such as positive integers), with the help of **template literal types**.
 - I learned that type unknown is used for errors.
 - I learned the only acceptable use case for any is for user input.
-- I learned that TypeScript can't do math, so `declare var a : -1 | 0 | 1; a = -a;` gives error. For that, we have **casting** which can be used with `as` keyword.
+- I learned that TypeScript can't do math, so `declare var a : -1 | 0 | 1; a = -a;` gives error. For that, we have **type assertion** which can be used with `as` keyword.
 - When calling scripts from command line, config can be written as: `npm run script -- --option`.
+- I learned why do we need `type casting`, and how does it work.
+- I learned how to use `enum`s.
+- I learned that to be able to check whether something is a string, checking `typeof` is not enough.
