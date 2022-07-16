@@ -8,6 +8,12 @@ router.get('/', (_req, res) => {
   res.send(patientService.getEntriesWithoutSSN());
 });
 
+router.get('/:id', (_req, res) => {
+  const result = patientService.getSinglePatient(_req.params.id);
+  if (result) {res.send(result);}
+  else {res.status(404).send({error:"missing patient"});}
+});
+
 router.post('/', (_req, res) => {
   try {
     const newPatient = toNewPatient(_req.body);

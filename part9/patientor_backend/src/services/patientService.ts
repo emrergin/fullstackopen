@@ -4,9 +4,9 @@ import { v1 as uuid } from 'uuid';
 import {Patient, patientWithoutSSN, newPatient} from '../types';
 
 
-const getEntries = (): Array<Patient> => {
-  return patientData;
-};
+// const getEntries = (): Array<Patient> => {
+//   return patientData;
+// };
 
 const getEntriesWithoutSSN =
   ():Array<patientWithoutSSN> =>
@@ -16,9 +16,18 @@ const getEntriesWithoutSSN =
       name,
       dateOfBirth,
       gender,
-      occupation
+      occupation,
+      entries:[]
     }));
   };
+
+const getSinglePatient = (id:string):Patient|undefined=>{
+  const result:Omit<Patient, 'entries'>|undefined = patientData.find(patient => patient.id === id);
+  return result?
+    { ...result,entries:[]}
+    :
+    result;
+}; 
 
 const addPatient = (entry:newPatient): Patient=>{
   const newPatient = {
@@ -30,7 +39,7 @@ const addPatient = (entry:newPatient): Patient=>{
 };
 
 export default {
-  getEntries,
   getEntriesWithoutSSN,
-  addPatient
+  addPatient,
+  getSinglePatient
 };

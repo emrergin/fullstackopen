@@ -126,3 +126,4 @@ This part focuses both typing Express and React apps.
 - I learned that to be able to check whether something is a string, checking `typeof` is not enough.
 - I created my first **union type**.
 - I used **exhaustive type checking** for the first time.
+- I used **Context API** and **useReducer** for the first time.
