@@ -8,6 +8,7 @@ import { Patient } from "../types";
 import FemaleIcon from '@mui/icons-material/Female';
 import MaleIcon from '@mui/icons-material/Male';
 import {getSecretPatient} from '../state/reducer';
+import Entries from './Entries';
 
 const PatientPage = () => {
     const [{patientsSecret},dispatch] = useStateValue();
@@ -23,6 +24,7 @@ const PatientPage = () => {
             `${apiBaseUrl}/patients/${id}`
           );
             dispatch(getSecretPatient(patientSecret));
+            // console.log(patientSecret);
         } catch (e) {
           console.error(e);
         }
@@ -51,6 +53,7 @@ const PatientPage = () => {
                 <Typography align="left" variant="body1">
                     occupation: {patientsSecret[id].occupation}
                 </Typography>
+                <Entries entries={patientsSecret[id].entries}/>
             </Box>
         </div>
     );

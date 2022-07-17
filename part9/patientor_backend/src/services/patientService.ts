@@ -1,4 +1,4 @@
-import patientData from '../../data/patients.json';
+import patientData from '../../data/patients';
 import { v1 as uuid } from 'uuid';
 
 import {Patient, patientWithoutSSN, newPatient} from '../types';
@@ -22,11 +22,8 @@ const getEntriesWithoutSSN =
   };
 
 const getSinglePatient = (id:string):Patient|undefined=>{
-  const result:Omit<Patient, 'entries'>|undefined = patientData.find(patient => patient.id === id);
-  return result?
-    { ...result,entries:[]}
-    :
-    result;
+  const result:Patient|undefined = patientData.find(patient => patient.id === id);
+  return result;
 }; 
 
 const addPatient = (entry:newPatient): Patient=>{
