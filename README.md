@@ -128,3 +128,6 @@ This part focuses both typing Express and React apps.
 - I used **exhaustive type checking** for the first time.
 - I used **Context API** and **useReducer** for the first time.
 - This is the first time that I am using **Material UI**.
+- While the Part 7 mentioned **Formik** as a great library, this is my first time actually using it.
+- I learned about `extend`, `&` and `Partial`.
+- I learned that TypeScript engine is not always smarter than me.

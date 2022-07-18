@@ -38,7 +38,7 @@ interface BaseEntry {
   diagnosisCodes?: Array<Diagnosis['code']>;
 }
 
-interface singleDateAndCriteria{
+export interface singleDateAndCriteria{
   date: string;
   criteria: string;
 }
@@ -48,7 +48,7 @@ interface HospitalEntry extends BaseEntry {
   discharge: singleDateAndCriteria;
 }
 
-interface dateInterval{
+export interface dateInterval{
   startDate: string;
   endDate: string;
 }
@@ -56,8 +56,7 @@ interface dateInterval{
 interface OccupationalHealthcareEntry extends BaseEntry {
   type: "OccupationalHealthcare";
   employerName?:string;
-  sickLeave?: dateInterval;
-  
+  sickLeave?: dateInterval;  
 }
 
 export enum HealthCheckRating {
@@ -76,3 +75,6 @@ export type Entry =
   | HospitalEntry
   | OccupationalHealthcareEntry
   | HealthCheckEntry;
+
+type UnionOmit<T, K extends string | number | symbol> = T extends unknown ? Omit<T, K> : never;
+export type newEntry = UnionOmit<Entry, 'id'>;

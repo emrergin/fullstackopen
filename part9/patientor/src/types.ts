@@ -65,3 +65,8 @@ export type Entry =
   | HospitalEntry
   | OccupationalHealthcareEntry
   | HealthCheckEntry;
+
+// export interface EntryFormRawValues =
+// {
+
+// }

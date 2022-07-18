@@ -16,7 +16,6 @@ import {setPatientList,setDiagnosesList} from './state/reducer';
 const App = () => {
   const [,dispatch] = useStateValue();
   React.useEffect(() => {
-    void axios.get<void>(`${apiBaseUrl}/ping`);
 
     const fetchPatientList = async () => {
       try {
