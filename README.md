@@ -104,7 +104,13 @@ Main bulk of this part was about improving the Bloglist Frontend we made in *Par
 - I used my first component libraries with React, namely [react-bootstrap](https://react-bootstrap.github.io/) and [styled-components](https://styled-components.com/).
 
 ## Part 8 GraphQL
-Skipping GraphQL for now.
+This part requires me to write GraphQL queries for a library website.
+
+- [Course](https://fullstackopen.com/en/part8)
+- [My solutions](https://github.com/emrergin/fullstackopen/tree/main/part8)
+
+### What I learned in Part 8
+- I have not tried **GraphQL** before, so this is definitely an informative experience.
 
 ## Part 9 TypeScript
 

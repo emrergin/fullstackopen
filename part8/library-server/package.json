@@ -1,0 +1,19 @@
+{
+  "name": "library-server",
+  "version": "1.0.0",
+  "description": "fullstack part8 graphql",
+  "main": "library-backend.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "graphql"
+  ],
+  "author": "Emre Ergin",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server": "^3.10.0",
+    "graphql": "^16.5.0",
+    "uuid": "^8.3.2"
+  }
+}
