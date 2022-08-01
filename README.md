@@ -111,7 +111,9 @@ This part requires me to write GraphQL queries for a library website.
 
 ### What I learned in Part 8
 - I have not tried **GraphQL** before, so this is definitely an informative experience.
-- By extension of the above, this is also my first time using **Apollo** client, server and explorer.
+- By extension of the above, this is also my first time using the **Apollo** client, server and explorer.
+- I learned how to use *mutations* and *queries* with optional variables.
+- I learned about importance of cleaning the cache and the local storage.
 
 ## Part 9 TypeScript
 
