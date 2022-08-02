@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { gql, useMutation  } from '@apollo/client'
-import { ALL_BOOKS } from './Books'
 import { ALL_AUTHORS } from './Authors'
 
 const CREATE_BOOK = gql`
@@ -34,11 +33,6 @@ const NewBook = ({show,setError}) => {
       setError(error.graphQLErrors[0]?.message)
     },
     update: (cache, response) => {
-      cache.updateQuery({ query: ALL_BOOKS }, ({ allBooks }) => {
-        return {
-          allBooks: allBooks.concat(response.data.addBook),
-        }
-      })
       cache.updateQuery({ query: ALL_AUTHORS }, ({ allAuthors }) => {
         return {
           allAuthors: allAuthors.concat(response.data.addBook.author),

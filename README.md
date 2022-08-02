@@ -104,7 +104,7 @@ Main bulk of this part was about improving the Bloglist Frontend we made in *Par
 - I used my first component libraries with React, namely [react-bootstrap](https://react-bootstrap.github.io/) and [styled-components](https://styled-components.com/).
 
 ## Part 8 GraphQL
-This part requires me to write GraphQL queries for a library website.
+This part requires me to write GraphQL queries for a library website, and covered the implementation of GraphQL for both the frontend and the backend.
 
 - [Course](https://fullstackopen.com/en/part8)
 - [My solutions](https://github.com/emrergin/fullstackopen/tree/main/part8)
@@ -114,6 +114,9 @@ This part requires me to write GraphQL queries for a library website.
 - By extension of the above, this is also my first time using the **Apollo** client, server and explorer.
 - I learned how to use *mutations* and *queries* with optional variables.
 - I learned about importance of cleaning the cache and the local storage.
+- This is the first time I used **Web Sockets**, is not that amazing?
+- I learned about the **n+1 problem** and how sinister it can be. I also solved it in the current application.
+- I learned that, *apollo cache* is saved separately not only for each query, but also the variables sent. If manual updates are used, any cache whose query can take variables should be updated separately for all related variables.
 
 ## Part 9 TypeScript
 
