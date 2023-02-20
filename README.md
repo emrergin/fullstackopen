@@ -120,7 +120,7 @@ This part requires me to write GraphQL queries for a library website, and covere
 
 ## Part 9 TypeScript
 
-This part focuses both typing Express and React apps.
+This part focuses on typing both Express and React apps.
 
 - [Course](https://fullstackopen.com/en/part9)
 - [My solutions](https://github.com/emrergin/fullstackopen/tree/main/part9)
@@ -146,12 +146,10 @@ This part focuses both typing Express and React apps.
 
 ## Part 13 Relational Databases
 
-This part focuses on PostgreSQL using Sequelize ORM. The task is mostly about replicating the backend written in *Part 4* with Postgres this time. The actual task suggested the use of postgres features of either Fly.io or Heroku, but I decided to locally install postgres instead.
+This part focuses on **PostgreSQL** using **Sequelize ORM**. The task is mostly about replicating the backend written in *Part 4* with Postgres this time. The actual task suggested the use of postgres features of either Fly.io or Heroku, but I decided to locally install postgres instead.
 
 - [Course](https://fullstackopen.com/en/part13)
 - [My solutions](https://github.com/emrergin/fullstackopen/tree/main/part13)
 
-### What I learned in Part 9
-- My first deep dive in SQL. Before this, I also worked on another tutorial series about Postgres by Amigoscode which can be found here:
-
-https://www.youtube.com/watch?v=5hzZtqCNQKk
+### What I learned in Part 13
+- My first deep dive in SQL. Before this, I also worked on another tutorial series about Postgres by **Amigoscode** which can be found here: https://www.youtube.com/watch?v=5hzZtqCNQKk
