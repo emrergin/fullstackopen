@@ -143,3 +143,15 @@ This part focuses both typing Express and React apps.
 - While the Part 7 mentioned **Formik** as a great library, this is my first time actually using it.
 - I learned about `extend`, `&` and `Partial`.
 - I learned that TypeScript engine is not always smarter than me.
+
+## Part 13 Relational Databases
+
+This part focuses on PostgreSQL using Sequelize ORM. The task is mostly about replicating the backend written in *Part 4* with Postgres this time. The actual task suggested the use of postgres features of either Fly.io or Heroku, but I decided to locally install postgres instead.
+
+- [Course](https://fullstackopen.com/en/part13)
+- [My solutions](https://github.com/emrergin/fullstackopen/tree/main/part13)
+
+### What I learned in Part 9
+- My first deep dive in SQL. Before this, I also worked on another tutorial series about Postgres by Amigoscode which can be found here:
+
+https://www.youtube.com/watch?v=5hzZtqCNQKk
