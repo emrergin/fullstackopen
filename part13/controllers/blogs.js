@@ -1,22 +1,41 @@
 const router = require('express').Router()
 
-const { Blog } = require('../models')
+const { Blog,User } = require('../models')
+const { tokenExtractor } = require('../util/middleware')
+
 
 router.get('/', async (req, res) => {
-    const blogs =  await Blog.findAll()
+    const blogs =  await Blog.findAll(
+        {
+            attributes: { exclude: ['userId'] },
+            include: {
+              model: User,
+              attributes: ['name']
+            }
+          }
+    )
     res.json(blogs)
 })
 
-router.post('/', async (req, res) => {
-    const blog = await Blog.create(req.body);
+
+
+router.post('/', tokenExtractor,async (req, res) => {
+    const user = await User.findByPk(req.decodedToken.id);
+    const blog = await Blog.create({...req.body, userId: user.id})
     return res.json(blog);
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', tokenExtractor,async (req, res) => {
     const blog = await Blog.findByPk(req.params.id)
     if (blog) {
-        await blog.destroy()
-        res.json(blog)
+        if(blog.userId===req.decodedToken.id){
+            await blog.destroy()
+            res.json(blog)
+        }
+        else{
+            return res.status(401).json({ error: 'this user does not have such a blog' })
+        }
+
     } else {
         res.status(404).end()
     }
