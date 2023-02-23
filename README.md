@@ -153,9 +153,10 @@ This part focuses on **PostgreSQL** using **Sequelize ORM**. The task is mostly 
 
 ### What I learned in Part 13
 - My first deep dive in SQL. Before this, I also worked on another tutorial series about Postgres by **Amigoscode** which can be found here: https://www.youtube.com/watch?v=5hzZtqCNQKk
-- Express apps need to activate `json()` middleware for parsing request bodies.
+- Express apps need to activate `json()` middleware for parsing request bodies. I somehow forgot about this...
 - Express error handler middleware should be used after the routes, not before.
 - Thanks to my frequent visits to sequelize documentation I started to discover the differences between different SQL dialects.
 - I learned how to use `[Op.or]` operator.
 - I learned how to do grouping and aggregation using Sequelize.
 - I learned how to do **migrations** using Sequelize and why may one need it.
+- The code written for migrations and for models have tiny differences, such as the case or the difference between "default" and "defaultValue".

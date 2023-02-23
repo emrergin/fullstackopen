@@ -24,10 +24,14 @@ module.exports = {
         defaultValue: 0,
         allowNull: false
       },
-      updatedAt: DataTypes.DATE,
-      createdAt: DataTypes.DATE
+      updated_at: {
+        type: DataTypes.DATE
+      },
+      created_at: {
+        type: DataTypes.DATE
+      }
     }
-      , {
+    , {
         hooks: {
            beforeCreate: function (blog, options, fn) {
                blog.createdAt = new Date();
@@ -39,7 +43,7 @@ module.exports = {
                fn(null, blog);
            }
        }
-      }
+    }
     )
     await queryInterface.createTable('users', {
       id: {
@@ -59,8 +63,12 @@ module.exports = {
         type: DataTypes.STRING,
         allowNull: false
       },
-      updatedAt: DataTypes.DATE,
-      createdAt: DataTypes.DATE
+      updated_at: {
+        type: DataTypes.DATE
+      },
+      created_at: {
+        type: DataTypes.DATE
+      }
     },
     {
       hooks: {

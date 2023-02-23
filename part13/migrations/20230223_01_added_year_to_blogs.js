@@ -4,7 +4,7 @@ module.exports = {
   up: async ({ context: queryInterface }) => {
     await queryInterface.addColumn('blogs', 'year', {
       type: DataTypes.INTEGER,
-      default: false,
+      default: new Date().getFullYear(),
       validate: {
 
         isFuture(value) {
