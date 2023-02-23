@@ -158,3 +158,4 @@ This part focuses on **PostgreSQL** using **Sequelize ORM**. The task is mostly 
 - Thanks to my frequent visits to sequelize documentation I started to discover the differences between different SQL dialects.
 - I learned how to use `[Op.or]` operator.
 - I learned how to do grouping and aggregation using Sequelize.
+- I learned how to do **migrations** using Sequelize and why may one need it.

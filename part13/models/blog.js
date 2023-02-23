@@ -24,6 +24,24 @@ Blog.init({
     type: DataTypes.INTEGER,
     defaultValue: 0,
     allowNull: false
+  },
+  year:{
+    type: DataTypes.INTEGER,
+    defaultValue: new Date().getFullYear(),
+    validate: {
+
+      isFuture(value) {
+        if (value>new Date().getFullYear()) {
+          throw new Error('You are not a time traveller!');
+        }
+      },
+
+      isAncient(value) {
+        if (value<1991) {
+          throw new Error('How did you even have a computer back then!');
+        }
+      }
+    }
   }
 }, {
   sequelize,
