@@ -1,23 +1,19 @@
-const router = require('express').Router()
+const router = require("express").Router();
 
-const { Blog } = require('../models')
-const { sequelize } = require('../util/db');
+const { Blog } = require("../models");
+const { sequelize } = require("../util/db");
 
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   const authors = await Blog.findAll({
-    group: 'author',
+    group: "author",
     attributes: [
-        'author',
-        [sequelize.fn('COUNT', sequelize.col('id')), 'articles'],
-        [sequelize.fn('SUM', sequelize.col('likes')), 'likes'],
+      "author",
+      [sequelize.fn("COUNT", sequelize.col("id")), "articles"],
+      [sequelize.fn("SUM", sequelize.col("likes")), "likes"],
     ],
-    order: [
-        ['likes', 'DESC'],
-    ],
-    
-  })
-  res.json(authors)
-})
+    order: [["likes", "DESC"]],
+  });
+  res.json(authors);
+});
 
-
-module.exports = router
+module.exports = router;

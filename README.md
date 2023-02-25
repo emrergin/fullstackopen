@@ -160,3 +160,4 @@ This part focuses on **PostgreSQL** using **Sequelize ORM**. The task is mostly 
 - I learned how to do grouping and aggregation using Sequelize.
 - I learned how to do **migrations** using Sequelize and why may one need it.
 - The code written for migrations and for models have tiny differences, such as the case or the difference between "default" and "defaultValue".
+- I learned that for tables without primary keys, one need to delete the default id key explicitly.
